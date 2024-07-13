@@ -51,7 +51,7 @@ public class CommonContext implements AutoCloseable {
     public CommonContext(final ExampleConfigurations options) {
         String grpcHost = options.getPubsubHost();
         int grpcPort = options.getPubsubPort();
-        logger.info("Using grpcHost {} and grpcPort {}", grpcHost, grpcPort);
+        logger.info("--Using grpcHost {} and grpcPort {}", grpcHost, grpcPort);
 
         if (options.usePlaintextChannel()) {
             channel = ManagedChannelBuilder.forAddress(grpcHost, grpcPort).usePlaintext().build();
@@ -185,6 +185,7 @@ public class CommonContext implements AutoCloseable {
      * @return
      */
     public GenericRecord createEventMessage(Schema schema) {
+                logger.info("@@@@@@========createEventMessage====================");
         // Update CreatedById with the appropriate User Id from your org.
         return new GenericRecordBuilder(schema).set("CreatedDate", System.currentTimeMillis())
                 .set("CreatedById", "<User_Id>").set("Order_Number__c", "1")
@@ -202,6 +203,7 @@ public class CommonContext implements AutoCloseable {
      * @return
      */
     public GenericRecord createEventMessage(Schema schema, final int counter) {
+            logger.info("@@@@@@==createEventMessagev2===============");
         // Update CreatedById with the appropriate User Id from your org.
         return new GenericRecordBuilder(schema).set("CreatedDate", System.currentTimeMillis())
                 .set("CreatedById", "<User_Id>").set("Order_Number__c", String.valueOf(counter+1))
@@ -209,6 +211,7 @@ public class CommonContext implements AutoCloseable {
     }
 
     public List<GenericRecord> createEventMessages(Schema schema, final int numEvents) {
+            logger.info("@@@@@@==createEventMessagev3===============");
 
         String[] orderNumbers = {"99","100","101","102","103"};
         String[] cities = {"Los Angeles", "New York", "San Francisco", "San Jose", "Boston"};
@@ -259,6 +262,7 @@ public class CommonContext implements AutoCloseable {
      * @throws IOException
      */
     public static GenericRecord deserialize(Schema schema, ByteString payload) throws IOException {
+         logger.info("@@@@----CommonContext.deserialize ----");
         DatumReader<GenericRecord> reader = new GenericDatumReader<GenericRecord>(schema);
         ByteArrayInputStream in = new ByteArrayInputStream(payload.toByteArray());
         BinaryDecoder decoder = DecoderFactory.get().directBinaryDecoder(in, null);
