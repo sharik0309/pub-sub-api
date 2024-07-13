@@ -51,6 +51,8 @@ public class Subscribe extends CommonContext {
     private volatile ByteString storedReplay;
 
     public Subscribe(ExampleConfigurations exampleConfigurations) {
+        logger.info("@@@@ Subscribe class cons");
+        GetTopic
         super(exampleConfigurations);
         isActive.set(true);
         this.exampleConfigurations = exampleConfigurations;
@@ -78,6 +80,7 @@ public class Subscribe extends CommonContext {
      * Function to start the subscription.
      */
     public void startSubscription() {
+         logger.info("@@@@ Subscribe.startSubscription method.");
         logger.info("Subscription started for topic: " + busTopicName + ".");
         fetch(BATCH_SIZE, busTopicName, replayPreset, customReplayId);
         // Thread being blocked here for demonstration of this specific example. Blocking the thread in production is not recommended.
@@ -242,6 +245,7 @@ public class Subscribe extends CommonContext {
      * Helper function to process the events received.
      */
     private void processEvent(ConsumerEvent ce) throws IOException {
+          logger.info("@@@@ Subscribe.processEvent method.");
         Schema writerSchema = getSchema(ce.getEvent().getSchemaId());
         this.storedReplay = ce.getReplayId();
         GenericRecord record = deserialize(writerSchema, ce.getEvent().getPayload());
