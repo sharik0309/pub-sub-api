@@ -40,7 +40,7 @@ public class ProcessChangeEventHeader {
     private ExampleConfigurations subscriberParams;
 
     public ProcessChangeEventHeader(ExampleConfigurations exampleParams) {
-        logger.info("Setting Up Subscriber");
+        logger.info("--Setting Up Subscriber---");
         this.subscriberParams = setupSubscriberParameters(exampleParams, exampleParams.getTopic(), 100);
         this.subscriber = new Subscribe(subscriberParams, getProcessChangeEventHeaderResponseObserver());
     }
