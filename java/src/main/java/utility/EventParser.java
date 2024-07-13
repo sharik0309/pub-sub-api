@@ -46,6 +46,7 @@ public class EventParser {
         List<String> values = new ArrayList<>();
         for (Utf8 utf8Value : utf8Values) {
             values.add(utf8Value.toString());
+            logger.info("@@-getFieldListFromBitmap-field---"+utf8Value.toString());
         }
         expandBitmap(schema, values);
         return values;
