@@ -23,6 +23,7 @@ import utility.ExampleConfigurations;
 public class GetSchema extends CommonContext {
 
     public GetSchema(final ExampleConfigurations options) {
+          logger.info("@@--GetSchema class cons---");
         super(options);
     }
 
