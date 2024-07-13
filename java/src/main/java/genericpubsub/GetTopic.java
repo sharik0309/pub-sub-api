@@ -19,6 +19,7 @@ import utility.ExampleConfigurations;
 public class GetTopic extends CommonContext {
 
     public GetTopic(final ExampleConfigurations options) {
+          logger.info("@@--GetTopic class cons---");
         super(options);
     }
 
